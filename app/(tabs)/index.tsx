@@ -1,36 +1,27 @@
-import { StyleSheet, Text, View,Image} from 'react-native';
-import products from '@/assets/data/products';
-import Colors from '@/constants/Colors';
-
-const product = products[0];
+import { StyleSheet, Text, View, ScrollView, FlatList } from "react-native";
+import products from "@/assets/data/products";
+import Colors from "@/constants/Colors";
+import ProductListItem from "@/components/ProductListItem";
+import { useState } from "react";
 
 export default function TabOneScreen() {
   return (
-    <View style={styles.container}>
-      <Image source={{uri:product.image}} style={styles.image}/>
-      <Text style={styles.title}>{product.name}</Text>
-      <Text style={styles.price}>${product.price}</Text>
+    <View>
+      <Text>Hey their my react native app</Text>
+      <FlatList
+        data={products}
+        renderItem={({ item }) => <ProductListItem product={item} />}
+        numColumns={2}
+        contentContainerStyle={{gap:10,padding:10}}
+        columnWrapperStyle={{gap:10}}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  image:{
-    width:"100%",
-    aspectRatio: 1
-  },
-  container: {
-  backgroundColor:"#fff",
-  padding:10,
-  borderRadius:20,
-  margin:3
-  },
-  title: {
+  text: {
     fontSize: 20,
-    fontWeight: '600',
-    marginVertical: 10
   },
-  price:{
-    color:Colors.light.tint
-  }
+  topView: {},
 });
